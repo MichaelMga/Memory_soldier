@@ -21,7 +21,7 @@
 #ground {
     height: 40%;
     width: 100%;
-    background: rgb(199, 97, 97);
+    background: rgb(87 69 139)
 }
 
 #characters{
@@ -37,10 +37,36 @@
     height: 55px;
     width: 100px;
     left: 600px;
-    z-index: 100;
 }
 
 #mainCharacterImg{
     height: 100%;
     width: auto;
+}
+
+#subject_container {
+    position: absolute;
+    height: 20vh;
+    width: 550px;
+    left : 50px;
+    top: 50px;
+    font-size: large;
+    font-weight: bold;
+    color: rgb(125, 101, 197);
+}
+
+#mistakes_container {
+    position: absolute;
+    top : 125px;
+    left : 50px;
+    color: rgb(125, 101, 197);
+    font-weight: bold;
+}
+
+#mistake_notif {
+    position: absolute;
+    top: 200px;
+    left: 50px;
+    color: red;
+    font-weight: bold;
 }
