@@ -103,6 +103,9 @@ const moveOpponent = (character) => {
 
         const characterPosition = parseInt(getComputedStyle(character.element).left.slice(0,-2));
 
+        character.element.style.left = (characterPosition - 30) + 'px';
+
+
         if(characterPosition <= 0) {
           
           charactersWrapper.removeChild(character.element);
@@ -116,7 +119,6 @@ const moveOpponent = (character) => {
           if(character.targettable){
             if(character.answer.right ) {
               mistakeDetail.innerHTML = "Vous avez raté la bonne réponse : " + character.answer.value;
-              console.log(character.answer)
               mistakes++;
               updateMistakesScore();
              } 
@@ -245,7 +247,9 @@ const tryToGetAnswer = (randomVal) => {
   charactersWrapper.appendChild(newOpponentsWrapper);  
   
   opponentsOnScreen.push(newOpponent);
-  
+
+  console.log(newOpponent.answer)
+    
   requestAnimationFrame( () => moveOpponent(newOpponent));
 
   setTimeout(
