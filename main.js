@@ -45,9 +45,9 @@ const subjects = [
                 "Sarajevo (Bosnia and Herzegovina)", "Gaborone (Botswana)", "Brasília (Brazil)", "Sofia (Bulgaria)", 
                 "Ouagadougou (Burkina Faso)", "Gitega (Burundi)", "Phnom Penh (Cambodia)", "Yaoundé (Cameroon)", 
                 "Ottawa (Canada)", "Praia (Cape Verde)", "Bangui (Central African Republic)", "N'Djamena (Chad)", 
-                "Santiago (Chile)", "Beijing (China)", "Bogotá (Colombia)", "Moroni (Comoros)", "Kinshasa (Democratic Republic of the Congo)", 
+                "Santiago (Chile)", "Beijing (China)", "Bogotá (Colombia)", "Moroni (Comoros)", "Kinshasa (RDC)", 
                 "San José (Costa Rica)", "Zagreb (Croatia)", "Havana (Cuba)", "Nicosia (Cyprus)", "Prague (Czech Republic)", 
-                "Copenhagen (Denmark)", "Djibouti (Djibouti)", "Roseau (Dominica)", "Santo Domingo (Dominican Republic)", 
+                "Copenhagen (Denmark)", "Djibouti (Djibouti)", "Roseau (Dominica)", 
                 "Quito (Ecuador)", "Cairo (Egypt)", "San Salvador (El Salvador)", "Malabo (Equatorial Guinea)", "Asmara (Eritrea)", 
                 "Tallinn (Estonia)", "Mbabane (Eswatini)", "Addis Ababa (Ethiopia)", "Suva (Fiji)", "Helsinki (Finland)", 
                 "Paris (France)", "Libreville (Gabon)", "Banjul (Gambia)", "Tbilisi (Georgia)", "Berlin (Germany)", "Accra (Ghana)", 
@@ -75,7 +75,7 @@ const subjects = [
                 "Istanbul (Turkey)", "Ankara (Turkey)", "Izmir (Turkey)", "Bursa (Turkey)", "Antalya (Turkey)", 
                 "Hamburg (Germany)", "Munich (Germany)", "Cologne (Germany)", "Frankfurt (Germany)", "Stuttgart (Germany)", 
                 "Alexandria (Egypt)", "Giza (Egypt)", "Shubra El-Kheima (Egypt)", "Port Said (Egypt)", "Suez (Egypt)", 
-                "Durban (South Africa)", "Johannesburg (South Africa)", "Cape Town (South Africa)", "Pretoria (South Africa)", "Port Elizabeth (South Africa)", 
+                "Durban (South Africa)", "Johannesburg (South Africa)", "Cape Town (South Africa)", "Pretoria (South Africa)", 
                 "Busan (South Korea)", "Incheon (South Korea)", "Daegu (South Korea)", "Gwangju (South Korea)", "Daejeon (South Korea)", 
                 "Guadalajara (Mexico)", "Monterrey (Mexico)", "Puebla (Mexico)", "Tijuana (Mexico)", "Ciudad Juárez (Mexico)", 
                 "Medellín (Colombia)", "Cali (Colombia)", "Barranquilla (Colombia)", "Cartagena (Colombia)", "Cúcuta (Colombia)", 
@@ -103,7 +103,7 @@ const moveOpponent = (character) => {
 
         const characterPosition = parseInt(getComputedStyle(character.element).left.slice(0,-2));
 
-        character.element.style.left = (characterPosition - 30) + 'px';
+        character.element.style.left = (characterPosition - 2) + 'px';
 
 
         if(characterPosition <= 0) {
@@ -220,10 +220,11 @@ const tryToGetAnswer = (randomVal) => {
   newOpponentsWrapper.style.justifyContent = 'space-between';
 
 
-
-  newOpponentElement.style.height = "50px";
+  newOpponentElement.style.height = "80px";
   newOpponentElement.style.width = "25px";
-  newOpponentElement.style.background = "red";
+  newOpponentElement.style.display = 'flex';
+  newOpponentElement.style.justifyContent = 'center';
+  newOpponentElement.style.alignItems = 'center';
 
   const newOpponentText = document.createElement("div");
   newOpponentText.style.width = "100%";
@@ -234,27 +235,38 @@ const tryToGetAnswer = (randomVal) => {
   newOpponentText.innerHTML = newOpponent.answer.value;
 
 
-  newOpponentText.style.background = "purple";
+  newOpponentText.style.background = "#ccb7e8";
+
+  newOpponentText.style.borderRadius = '15px';
+
+  newOpponentText.style.textRendering = "optimizeLegibility";
 
 
   newOpponent.element = newOpponentsWrapper;
 
+  const opponentImg = document.createElement("img");
+
+  opponentImg.src = 'assets/vilain.png';
+
+  opponentImg.style.height = '90%';
+  opponentImg.style.width = 'auto';
+
+  newOpponentElement.appendChild(opponentImg);
+
 
   newOpponentsWrapper.appendChild(newOpponentText);
-  newOpponentsWrapper.appendChild(newOpponentElement);
-
+  newOpponentsWrapper.appendChild(newOpponentElement);  
 
   charactersWrapper.appendChild(newOpponentsWrapper);  
   
   opponentsOnScreen.push(newOpponent);
 
-  console.log(newOpponent.answer)
     
   requestAnimationFrame( () => moveOpponent(newOpponent));
 
   setTimeout(
     makeOpponentAppear
-  , Math.floor( 1000 + (3000 * Math.random())));
+  , Math.floor( 2500 + (3000 * Math.random())));
 }
 
 window.onload =
